@@ -6,9 +6,10 @@ public abstract class Usuario {
 	protected String rol;
 	
 
-	public Usuario(String nombreUsuario, String constraseña) {
+	public Usuario(String nombreUsuario, String constraseña, String rol) {
 		this.NombreUsuario = nombreUsuario;
 		this.constraseña = constraseña;
+		this.rol = rol;
 	}
 
 	public String getNombreUsuario() {

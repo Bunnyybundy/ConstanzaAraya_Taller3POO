@@ -32,6 +32,9 @@ public class Proyecto {
 		return tareas;
 	}
 	
+	public void agregarTarea( Tarea t) {
+		tareas.add(t);
+	}
 	
 	
 }
