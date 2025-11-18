@@ -43,6 +43,9 @@ public class Main {
 		}
 	}
 	private static void menuAdmin() {
+		s = new Scanner(System.in);
+		int opcion;
+		do {
 		System.out.println("== Menú Administrador ==");
         System.out.println("1. Ver proyectos y tareas");
         System.out.println("2. Agregar proyecto");
@@ -51,13 +54,71 @@ public class Main {
         System.out.println("5. Eliminar tarea");
         System.out.println("6. Asignar Estrategia");
         System.out.println("7. Generar reporte de proyectos");
+        System.out.println("8. Salir del menu");
+        opcion = s.nextInt(); 
+        switch(opcion) {
+        case 1:
+        	Sistema.verProyectosTareas();
+        	break;
+        case 2:
+        	Sistema.agregarProyectos();
+        	break;
+        case 3:
+        	Sistema.eliminarProyectos();
+        	break;
+        case 4:
+        	Sistema.agregarTarea();
+        	break;
+        case 5:
+        	Sistema.eliminarTarea();
+        	break;
+        case 6:
+        	Sistema.asignarEstrategia();
+        	break;
+        case 7:
+        	Sistema.generarReporteProyectos();
+        	break;
+        case 8:
+        	System.out.println("Saliendo del menu...");
+        	break;
+        default:
+        	System.out.println("Opcion incorrecta...Intente nuevamente.");
+        	
+        }
+		}while(opcion!= 8);
 	}
 	private static void menuUsuario() {
+		s = new Scanner(System.in);
+		int opcion;
+		do {
 		System.out.println("== Menú Usuario ==");
-        System.out.println("1. Ver proyectos disponibles");
-        System.out.println("2. Ver tareas asignadas");
-        System.out.println("3. Actualizar estado de tarea");
-        System.out.println("4. Aplicar Visitor");
+        System.out.println("1. Ver proyectos disponibles.");
+        System.out.println("2. Ver tareas asignadas.");
+        System.out.println("3. Actualizar estado de tarea.");
+        System.out.println("4. Aplicar Visitor.");
+        System.out.println("5. Salir del menu.");
+        opcion = s.nextInt(); 
+        switch(opcion) {
+        case 1:
+        	Sistema.verProyectosDisponibles();
+        	break;
+        case 2:
+        	Sistema.verTareasAsignadas();
+        	break;
+        case 3:
+        	Sistema.actualizarEstadoTarea();
+        	break;
+        case 4:
+        	Sistema.aplicarVisitor();
+        	break;
+        case 5:
+        	System.out.println("Saliendo del menu...");
+        	break;
+        default:
+        	System.out.println("Opcion incorrecta...Intente nuevamente.");
+        	
+        }
+		}while(opcion!= 5);
 	}
 
 	

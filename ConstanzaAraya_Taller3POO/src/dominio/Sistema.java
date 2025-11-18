@@ -87,4 +87,59 @@ public class Sistema {
     	return tareas;
     	}
 
+	public static void aplicarVisitor() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public static void actualizarEstadoTarea() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public static void verTareasAsignadas() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public static void verProyectosDisponibles() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public static void generarReporteProyectos() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public static void asignarEstrategia() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public static void eliminarTarea() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public static void agregarTarea() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public static void eliminarProyectos() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public static void agregarProyectos() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public static void verProyectosTareas() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }
