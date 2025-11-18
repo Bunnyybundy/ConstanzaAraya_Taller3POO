@@ -8,77 +8,58 @@ import java.util.Scanner;
 
 public class Main {
 	private static Scanner s;
-	private static ArrayList<Usuario> usuarios = new ArrayList<>();
-	private static ArrayList<Proyecto> proyectos = new ArrayList<>();
-	private static ArrayList<Tarea> tareas = new ArrayList<>();
-	
 	public static void main(String[] args) throws FileNotFoundException {
 		
-		leerUsuarios("usuarios.txt");
-		leerProyectos("proyectos.txt");
-		leerTareas("tareas.txt");
+		Sistema sistema = Sistema.getInstance();
+		Sistema.leerUsuarios("usuarios.txt");
+		Sistema.leerProyectos("proyectos.txt");
+		Sistema.leerTareas("tareas.txt");
+		
 		s = new Scanner(System.in);
 		System.out.println("Nombre de usuario: ");
 		String usuario = s.nextLine();
 		System.out.println("Contraseña: ");
 		String contraseña = s.nextLine();
-	}
-
-	
-	private static void leerUsuarios(String archivo) throws FileNotFoundException {
-		s = new Scanner(new File(archivo));
-		while(s.hasNextLine()) {
-			String[] partes = s.nextLine().split("\\|");
-			String nombreUsuario = partes[0];
-			String contraseña = partes[1];
-			String rol = partes[2];
+		
+		Usuario encontrado = null;
+		for(Usuario nombreUsuario: sistema.getUsuarios()) {
+			if(nombreUsuario.getNombreUsuario().equals(usuario)&& nombreUsuario.getConstraseña().equals(contraseña)) {
+				encontrado = nombreUsuario;
+				break;
+			}
+		}
+		
+		if(encontrado == null) {
+			System.out.println("Login invalido.");
+			return;
+		}
+		
+		System.out.println("Bienvenido " + encontrado.getNombreUsuario() + "(" + encontrado.getRol() + ")");
+		if(encontrado.getRol().equalsIgnoreCase("Administrador")) {
+			menuAdmin();
 			
-			if(rol.equalsIgnoreCase("Administrador")) {
-				usuarios.add(new Administrador(nombreUsuario, contraseña));
-			}else {
-				usuarios.add(new Colaborador(nombreUsuario, contraseña));
-			}
+		}else {
+			menuUsuario();
 		}
-		s.close();
 	}
-	
-	private static void leerProyectos(String archivo) throws FileNotFoundException {
-		s = new Scanner(new File(archivo));	
-		while(s.hasNextLine()) {
-			String[] partes = s.nextLine().split("\\|");
-			String id = partes[0];
-			String nombreProyecto = partes[1];
-			String responsable = partes[2];
-			Proyecto p = new Proyecto(id, nombreProyecto, responsable);
-			proyectos.add(p);
-		}
-	s.close();
+	private static void menuAdmin() {
+		System.out.println("== Menú Administrador ==");
+        System.out.println("1. Ver proyectos y tareas");
+        System.out.println("2. Agregar proyecto");
+        System.out.println("3. Eliminar proyecto");
+        System.out.println("4. Agregar tarea");
+        System.out.println("5. Eliminar tarea");
+        System.out.println("6. Asignar Estrategia");
+        System.out.println("7. Generar reporte de proyectos");
+	}
+	private static void menuUsuario() {
+		System.out.println("== Menú Usuario ==");
+        System.out.println("1. Ver proyectos disponibles");
+        System.out.println("2. Ver tareas asignadas");
+        System.out.println("3. Actualizar estado de tarea");
+        System.out.println("4. Aplicar Visitor");
 	}
 
-	private static void leerTareas(String archivo) throws FileNotFoundException {
-			s = new Scanner(new File(archivo));
-			while(s.hasNextLine()) {
-				String[] partes = s.nextLine().split("\\|");
-				String proyectoId = partes[0];
-				String id = partes[1];
-				String tipo = partes[2];
-				String descripcion = partes[3];
-				String estado = partes[4];
-				String responsable =partes[5];
-				String complejidad = partes[6];
-				LocalDate fecha = LocalDate.parse(partes[7]);
-				
-				Tarea t;
-				if(tipo.equalsIgnoreCase("Bug")) {
-					t = new Bug(proyectoId, id, tipo,descripcion ,estado, responsable, complejidad, fecha);
-				}else if(tipo.equalsIgnoreCase("Feature")) {
-					t = new Feature (proyectoId, id, tipo,descripcion ,estado, responsable, complejidad, fecha);
-				}else {
-					t = new Documentacion(proyectoId, id, tipo,descripcion ,estado, responsable, complejidad, fecha);
-					
-				}
-				tareas.add(t);
-			}
-			s.close();
-	}
+	
+
 }
