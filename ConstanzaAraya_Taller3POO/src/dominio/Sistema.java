@@ -170,8 +170,55 @@ public class Sistema {
 	}
 
 	public static void agregarTarea() {
-		// TODO Auto-generated method stub
+		System.out.println("ID del proyecto: ");
+		String proyectoId = s.nextLine();
 		
+		Proyecto proyecto = null;
+		for(Proyecto p : proyectos) {
+			if(p.getId().equals(proyectoId)) {
+				proyecto = p;
+				break;
+			}
+		}
+		if(proyecto == null) {
+			System.out.println("Proyecto no encontrado.");
+			return;
+			
+		}
+		
+		System.out.println("Id de la tarea: ");
+		String id = s.nextLine();
+		System.out.println("Tipo (Bug/Feature/Documentacion): ");
+		String tipo = s.nextLine();
+		System.out.println("Descripcion: ");
+		String descripcion = s.nextLine();
+		System.out.println("Estado: ");
+		String estado = s.nextLine();
+		System.out.println("Responsable: ");
+		String responsable = s.nextLine();
+		System.out.println("Complejidad: ");
+		String complejidad = s.nextLine();
+		System.out.println("Fecha (AAAA-MM-DD): ");
+		String fecha = s.nextLine();
+		
+		for(Tarea t: tareas) {
+			if(t.getResponsable().equals(responsable)&&t.getFecha().toString().equals(fecha)) {
+				System.out.println("El responsable ya tiene una tarea en esa fecha.");
+				return;
+			}
+		}
+		Tarea nueva;
+		if(tipo.equalsIgnoreCase("Bug")) {
+			nueva = new Bug(proyectoId, id,tipo, descripcion, estado, responsable,complejidad, LocalDate.parse(fecha));
+		}else if(tipo.equalsIgnoreCase("Feature")) {
+			nueva = new Feature(proyectoId, id,tipo, descripcion, estado, responsable,complejidad, LocalDate.parse(fecha));
+		}else{
+			nueva = new Documentacion(proyectoId, id,tipo, descripcion, estado, responsable,complejidad, LocalDate.parse(fecha));
+			
+		}
+		proyecto.agregarTarea(nueva);
+		tareas.add(nueva);
+		System.out.println("Tarea agregada correctamente.");
 	}
 
 	public static void eliminarProyectos() {
@@ -187,7 +234,13 @@ public class Sistema {
 		}
 		if(encontrado != null) {
 			proyectos.remove(encontrado);
-			System.out.println("Proyecto eliminado");
+			for(int i = 0; i< tareas.size();i++) {
+				if(tareas.get(i).getProyectoId().equals(id)) {
+					tareas.remove(i);
+					i--;
+				}
+			}
+			System.out.println("Proyecto y sus tareas eliminadas correctamente.");
 		}else {
 			System.out.println("Proyecto no encontrado.");
 		}

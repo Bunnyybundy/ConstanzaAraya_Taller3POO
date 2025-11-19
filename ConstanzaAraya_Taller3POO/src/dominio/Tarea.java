@@ -23,6 +23,10 @@ public abstract class Tarea {
 		this.complejidad = complejidad;
 		this.fecha = fecha;
 	}
+	
+	public String getProyectoId() {
+		return proyectoId;
+	}
 
 	public String getId() {
 		return id;
@@ -58,6 +62,10 @@ public abstract class Tarea {
 
 	public void setComplejidad(String complejidad) {
 		this.complejidad = complejidad;
+	}
+
+	public LocalDate getFecha() {
+		return fecha;
 	}
 	
 	
