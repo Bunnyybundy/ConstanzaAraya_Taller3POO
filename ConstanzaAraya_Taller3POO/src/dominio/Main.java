@@ -39,7 +39,7 @@ public class Main {
 			menuAdmin();
 			
 		}else {
-			menuUsuario();
+			menuUsuario(encontrado);
 		}
 	}
 	private static void menuAdmin() {
@@ -56,6 +56,7 @@ public class Main {
         System.out.println("7. Generar reporte de proyectos");
         System.out.println("8. Salir del menu");
         opcion = s.nextInt(); 
+        s.nextLine();
         switch(opcion) {
         case 1:
         	Sistema.verProyectosTareas();
@@ -87,7 +88,7 @@ public class Main {
         }
 		}while(opcion!= 8);
 	}
-	private static void menuUsuario() {
+	private static void menuUsuario(Usuario u) {
 		s = new Scanner(System.in);
 		int opcion;
 		do {
@@ -98,15 +99,16 @@ public class Main {
         System.out.println("4. Aplicar Visitor.");
         System.out.println("5. Salir del menu.");
         opcion = s.nextInt(); 
+        s.nextLine();
         switch(opcion) {
         case 1:
         	Sistema.verProyectosDisponibles();
         	break;
         case 2:
-        	Sistema.verTareasAsignadas();
+        	Sistema.verTareasAsignadas(u.getNombreUsuario());
         	break;
         case 3:
-        	Sistema.actualizarEstadoTarea();
+        	Sistema.actualizarEstadoTarea(u.getNombreUsuario());
         	break;
         case 4:
         	Sistema.aplicarVisitor();

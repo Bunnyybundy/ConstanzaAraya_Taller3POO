@@ -93,15 +93,29 @@ public class Sistema {
 		
 	}
 
-	public static void actualizarEstadoTarea() {
-		// TODO Auto-generated method stub
+	public static void actualizarEstadoTarea(String u) {
+		System.out.println("Id de la tarea a actualizar: ");
+		String tareaId = s.nextLine();
 		
+		for(Tarea t: tareas) {
+			if(t.getId().equals(tareaId) && t.getResponsable().equals(u)) {
+				System.out.println("Estado actual: " + t.getEstado());
+				System.out.println("Nueva estado(Pendiente/ En progreso / Completado): ");
+				String nuevoEstado = s.nextLine();
+				t.setEstado(nuevoEstado);
+				System.out.println("Estado actualizado.");
+				return;
+			}
+		}
+		System.out.println("Tarea no encontrada.");
 	}
 
-	public static void verTareasAsignadas() {
+	public static void verTareasAsignadas(String u) {
 		for(Proyecto p: getProyectos()) {
 			for(Tarea t : p.getTareas()) {
-
+				if(t.getResponsable().equals(u)) {
+					System.out.println("" + p.getId() + t.getId() + t.getDescripcion() + t.getEstado());
+				}
 			}
 		}
 	}
@@ -123,8 +137,36 @@ public class Sistema {
 	}
 
 	public static void eliminarTarea() {
-		// TODO Auto-generated method stub
+		System.out.println("Id del proyecto: ");
+		String proyectoId = s.nextLine();
+		System.out.println("ID de la tarea: ");
+		String tareaId = s.nextLine();
 		
+		Proyecto proyecto = null;
+		for(Proyecto p : proyectos) {
+			if(p.getId().equals(proyectoId)) {
+				proyecto = p;
+				break;
+			}
+		}
+		if(proyecto == null) {
+			System.out.println("Proyecto no encontrado.");
+			return;
+		}
+		Tarea encontrada = null;
+		for(Tarea t : proyecto.getTareas()) {
+			if(t.getId().equals(tareaId)) {
+				encontrada = t;
+				break;
+			}
+		}
+		if(encontrada != null) {
+			proyecto.getTareas().remove(encontrada);
+			tareas.remove(encontrada);
+			System.out.println("Tarea eliminada.");
+		}else {
+			System.out.println("Tarea no encontrada");
+		}
 	}
 
 	public static void agregarTarea() {
