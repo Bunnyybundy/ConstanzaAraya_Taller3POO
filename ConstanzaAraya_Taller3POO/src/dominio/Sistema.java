@@ -16,8 +16,9 @@ public class Sistema {
 	private Sistema() {}
 	
 	public static Sistema getInstance() {
-		if(instance == null) 
+		if(instance == null) {
 			instance = new Sistema();
+			}
 			return instance;
 	}
 	public static void leerUsuarios(String archivo) throws FileNotFoundException {
@@ -80,7 +81,7 @@ public class Sistema {
 	public ArrayList<Usuario> getUsuarios() {
 		 return usuarios; 
 		 }
-    public ArrayList<Proyecto> getProyectos() {
+    public static ArrayList<Proyecto> getProyectos() {
     	return proyectos;
     	}
     public ArrayList<Tarea> getTareas() {
@@ -98,13 +99,17 @@ public class Sistema {
 	}
 
 	public static void verTareasAsignadas() {
-		// TODO Auto-generated method stub
-		
+		for(Proyecto p: getProyectos()) {
+			for(Tarea t : p.getTareas()) {
+
+			}
+		}
 	}
 
 	public static void verProyectosDisponibles() {
-		// TODO Auto-generated method stub
-		
+		for(Proyecto p : getProyectos()) {
+			System.out.println(p.getId() + "-" + p.getNombre());
+		}
 	}
 
 	public static void generarReporteProyectos() {
@@ -128,18 +133,44 @@ public class Sistema {
 	}
 
 	public static void eliminarProyectos() {
-		// TODO Auto-generated method stub
+		System.out.println("ID del proyecto a eliminar: ");
+		String id = s.nextLine();
 		
+		Proyecto encontrado = null;
+		for(Proyecto p : proyectos) {
+			if(p.getId().equals(id)) {
+				encontrado = p;
+				break;
+			}
+		}
+		if(encontrado != null) {
+			proyectos.remove(encontrado);
+			System.out.println("Proyecto eliminado");
+		}else {
+			System.out.println("Proyecto no encontrado.");
+		}
 	}
 
 	public static void agregarProyectos() {
-		// TODO Auto-generated method stub
+		System.out.println("ID del proyecto: ");
+		String id = s.nextLine();
+		System.out.println("Nombre del proyecto: ");
+		String nombre = s.nextLine();
+		System.out.println("Responsable: ");
+		String responsable = s.nextLine();
 		
+		Proyecto nuevo = new Proyecto(id, nombre, responsable);
+		proyectos.add(nuevo);
+		System.out.println("Proyecto agregado correctamente. ");
 	}
 
 	public static void verProyectosTareas() {
-		// TODO Auto-generated method stub
-		
+		for(Proyecto p: getProyectos()) {
+			System.out.println("Proyecto: " + p.getId() + "-" + p.getNombre() + " Responsable: " + p.getResponsable() + ")");
+		for(Tarea t: p.getTareas()) {
+			System.out.println(" Tarea: " + t.getId() + " - " + t.getTipo() + "-" + t.getDescripcion() + "- Estado" + t.getEstado() );
+			}
+		}
 	}
 
 }
