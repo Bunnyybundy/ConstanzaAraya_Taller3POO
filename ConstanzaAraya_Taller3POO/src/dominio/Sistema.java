@@ -132,8 +132,25 @@ public class Sistema {
 	}
 
 	public static void asignarEstrategia() {
-		// TODO Auto-generated method stub
+		System.out.println("Elige la estrategia: 1) Complejidad  2)Fecha  3)Tipo");
+		int opcion = s.nextInt();
+		s.nextLine();
 		
+		EstrategiaPrioridad estrategia;
+		
+		if(opcion == 1) {
+			estrategia = new EstrategiaPorComplejidad();
+		}else if(opcion == 2) {
+			estrategia = new EstrategiaPorFecha();
+		}else if(opcion == 3) {
+			estrategia = new EstrategiaPorTipo();
+		}else {
+			System.out.println("Opcion invalida.");
+			return;
+		}
+		
+		estrategia.ordenar(tareas);
+		System.out.println("Tareas ordenadas segun la estrategia elegida.");
 	}
 
 	public static void eliminarTarea() {
