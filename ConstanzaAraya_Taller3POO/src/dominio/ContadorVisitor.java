@@ -1,9 +1,9 @@
 package dominio;
 
 public class ContadorVisitor implements Visitor{
-	private int pendientes = 0;
+	private int pendiente = 0;
 	private int enProgreso = 0;
-	private int completadas = 0;
+	private int completada = 0;
 	@Override
 	public void visitarProyecto(Proyecto p) {
 		// TODO Auto-generated method stub
@@ -12,19 +12,19 @@ public class ContadorVisitor implements Visitor{
 
 	@Override
 	public void visitarTarea(Tarea t) {
-		if(t.getEstado().equalsIgnoreCase("Pendientes")) {
-			pendientes++;
+		if(t.getEstado().equalsIgnoreCase("Pendiente")) {
+			pendiente++;
 		}else if(t.getEstado().equalsIgnoreCase("En progreso")){
 			enProgreso++;
 		}else if(t.getEstado().equalsIgnoreCase("Completada")) {
-			completadas++;
+			completada++;
 		}
 	}
 	
 	public void mostrarResultados() {
-		System.out.println("Tareas pendientes: " + pendientes);
+		System.out.println("Tareas pendientes: " + pendiente);
 		System.out.println("Tareas en progreso: " + enProgreso);
-		System.out.println("Tareas completadas: " + completadas);
+		System.out.println("Tareas completadas: " + completada);
 	}
 
 }

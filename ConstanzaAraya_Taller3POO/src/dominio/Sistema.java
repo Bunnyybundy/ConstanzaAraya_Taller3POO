@@ -2,6 +2,7 @@ package dominio;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.PrintWriter;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -132,10 +133,26 @@ public class Sistema {
 		}
 	}
 
-	public static void generarReporteProyectos() {
-		// TODO Auto-generated method stub
-		
+	public static void generarReporteProyectos() throws FileNotFoundException {
+	try {	PrintWriter pw = new PrintWriter("Reportes.txt");
+		for(Proyecto p: proyectos) {
+			pw.println("Proyecto: " + p.getId() + " - " + p.getNombre() + " Responsable: " + p.getResponsable() +".");
+			
+			if(p.getTareas().isEmpty()) {
+				pw.println(" [Sin tareas registradas] ");
+			}else {
+				for(Tarea t : p.getTareas()) {
+					pw.println(" Tarea: " + t.getId() + " | Tipo: " + t.getTipo() + " | Descripcion: " + t.getDescripcion() + " |Estado: " + t.getEstado() + " | Responsable: " + t.getResponsable() + " | Complejidad: " + t.getComplejidad() + " | Fecha: " + t.getFecha());
+				}
+			}
+			pw.println();
+		}
+		System.out.println(" Reporte generado en reporte.txt");
+	}catch(Exception e) {
+		System.out.println("Error al generar reporte: " + e.getMessage());
+		}
 	}
+	
 
 	public static void asignarEstrategia() {
 		System.out.println("Elige la estrategia: 1) Complejidad  2)Fecha  3)Tipo");
