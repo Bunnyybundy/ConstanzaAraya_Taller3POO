@@ -230,15 +230,7 @@ public class Sistema {
 				return;
 			}
 		}
-		Tarea nueva;
-		if(tipo.equalsIgnoreCase("Bug")) {
-			nueva = new Bug(proyectoId, id,tipo, descripcion, estado, responsable,complejidad, LocalDate.parse(fecha));
-		}else if(tipo.equalsIgnoreCase("Feature")) {
-			nueva = new Feature(proyectoId, id,tipo, descripcion, estado, responsable,complejidad, LocalDate.parse(fecha));
-		}else{
-			nueva = new Documentacion(proyectoId, id,tipo, descripcion, estado, responsable,complejidad, LocalDate.parse(fecha));
-			
-		}
+		Tarea nueva = TareaFactory.crearTarea(proyectoId, id, tipo, descripcion, estado, responsable, complejidad, LocalDate.parse(fecha));
 		proyecto.agregarTarea(nueva);
 		tareas.add(nueva);
 		System.out.println("Tarea agregada correctamente.");
