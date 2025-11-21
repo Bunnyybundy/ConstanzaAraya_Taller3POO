@@ -89,8 +89,14 @@ public class Sistema {
     	}
 
 	public static void aplicarVisitor() {
-		// TODO Auto-generated method stub
-		
+		Visitor v = new ContadorVisitor();
+		for(Proyecto p: proyectos) {
+			v.visitarProyecto(p);
+			for(Tarea t: p.getTareas()) {
+				v.visitarTarea(t);
+			}
+		}
+		((ContadorVisitor) v).mostrarResultados();
 	}
 
 	public static void actualizarEstadoTarea(String u) {
