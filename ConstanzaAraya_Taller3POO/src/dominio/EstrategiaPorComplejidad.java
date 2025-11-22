@@ -1,7 +1,6 @@
 package dominio;
 
 import java.util.ArrayList;
-import java.util.Comparator;
 /**
  * Estrategia que ordena las tareas por nivel de complejidad.
  * Baja → Media → Alta.
