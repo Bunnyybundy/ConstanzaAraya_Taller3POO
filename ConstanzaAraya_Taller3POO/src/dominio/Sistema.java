@@ -65,15 +65,7 @@ public class Sistema {
 				String complejidad = partes[6];
 				LocalDate fecha = LocalDate.parse(partes[7]);
 				
-				Tarea t;
-				if(tipo.equalsIgnoreCase("Bug")) {
-					t = new Bug(proyectoId, id, tipo,descripcion ,estado, responsable, complejidad, fecha);
-				}else if(tipo.equalsIgnoreCase("Feature")) {
-					t = new Feature (proyectoId, id, tipo,descripcion ,estado, responsable, complejidad, fecha);
-				}else {
-					t = new Documentacion(proyectoId, id, tipo,descripcion ,estado, responsable, complejidad, fecha);
-					
-				}
+				Tarea t = TareaFactory.crearTarea(proyectoId, id, tipo, descripcion, estado, responsable, complejidad, fecha);
 				tareas.add(t);
 			}
 			s.close();

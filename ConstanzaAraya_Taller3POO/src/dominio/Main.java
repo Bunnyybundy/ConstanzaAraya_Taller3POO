@@ -1,5 +1,7 @@
 package dominio;
-
+//Nombre: Constanza Fernanda Araya Plaza
+//RUT: 21.609.057-8
+//Carrera: Ingeniería Civil en Computación e Informática
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.time.LocalDate;
@@ -42,7 +44,7 @@ public class Main {
 			menuUsuario(encontrado);
 		}
 	}
-	private static void menuAdmin() {
+	private static void menuAdmin() throws FileNotFoundException {
 		s = new Scanner(System.in);
 		int opcion;
 		do {
