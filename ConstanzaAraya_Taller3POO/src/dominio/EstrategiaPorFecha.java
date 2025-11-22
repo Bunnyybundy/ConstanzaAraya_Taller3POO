@@ -1,7 +1,10 @@
 package dominio;
 
 import java.util.ArrayList;
-
+/**
+ * Estrategia que ordena las tareas por fecha de creación.
+ * Las más antiguas primero.
+ */
 public class EstrategiaPorFecha implements EstrategiaPrioridad {
 
 	@Override

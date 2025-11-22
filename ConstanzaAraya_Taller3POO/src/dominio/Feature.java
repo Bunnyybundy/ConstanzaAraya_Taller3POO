@@ -1,7 +1,10 @@
 package dominio;
 
 import java.time.LocalDate;
-
+/**
+ * Clase que representa una tarea de tipo Feature.
+ * Impacta en la estimación de tiempo del proyecto.
+ */
 public class Feature extends Tarea{
 
 	public Feature(String proyectoId, String id, String tipo, String descripcion, String estado, String responsable,

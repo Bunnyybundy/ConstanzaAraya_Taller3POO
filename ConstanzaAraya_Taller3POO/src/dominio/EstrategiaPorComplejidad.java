@@ -2,7 +2,10 @@ package dominio;
 
 import java.util.ArrayList;
 import java.util.Comparator;
-
+/**
+ * Estrategia que ordena las tareas por nivel de complejidad.
+ * Baja → Media → Alta.
+ */
 public class EstrategiaPorComplejidad implements EstrategiaPrioridad{
 	private static int nivelComplejidad(String c) {
 		if(c.equalsIgnoreCase("Baja")) {

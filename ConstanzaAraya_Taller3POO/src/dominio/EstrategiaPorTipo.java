@@ -1,7 +1,10 @@
 package dominio;
 
 import java.util.ArrayList;
-
+/**
+ * Estrategia que ordena las tareas por tipo.
+ * Bug → Feature → Documentación.
+ */
 public class EstrategiaPorTipo implements EstrategiaPrioridad {
 	private static int nivelTipo(String tipo) {
 		if(tipo.equalsIgnoreCase("Bug")) {

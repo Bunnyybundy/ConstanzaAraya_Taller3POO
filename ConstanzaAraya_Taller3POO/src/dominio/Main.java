@@ -7,7 +7,10 @@ import java.io.FileNotFoundException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Scanner;
-
+/**
+ * Clase principal que inicia la ejecución del sistema.
+ * Permite el login de usuarios y despliega menús según el rol.
+ */
 public class Main {
 	private static Scanner s;
 	public static void main(String[] args) throws FileNotFoundException {

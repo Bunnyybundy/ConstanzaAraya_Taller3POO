@@ -6,7 +6,11 @@ import java.io.PrintWriter;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Scanner;
-
+/**
+ * Clase Singleton que gestiona usuarios, proyectos y tareas.
+ * Implementa lectura y escritura en archivos, aplicación de patrones
+ * Strategy, Visitor y Factory.
+ */
 public class Sistema {
 	private static Sistema instance;
 	private static Scanner s;
@@ -16,12 +20,20 @@ public class Sistema {
 	
 	private Sistema() {}
 	
+	/**
+     * Obtiene la instancia única del sistema.
+     * @return instancia de Sistema
+     */
 	public static Sistema getInstance() {
 		if(instance == null) {
 			instance = new Sistema();
 			}
 			return instance;
 	}
+	/**
+     * Lee usuarios desde un archivo de texto.
+     * @param archivo ruta del archivo
+     */
 	public static void leerUsuarios(String archivo) throws FileNotFoundException {
 		s = new Scanner(new File(archivo));
 		while(s.hasNextLine()) {
@@ -38,7 +50,10 @@ public class Sistema {
 		}
 		s.close();
 	}
-	
+	/**
+     * Lee proyectos desde un archivo de texto.
+     * @param archivo ruta del archivo
+     */
 	public static void leerProyectos(String archivo) throws FileNotFoundException {
 		s = new Scanner(new File(archivo));	
 		while(s.hasNextLine()) {
@@ -51,7 +66,10 @@ public class Sistema {
 		}
 	s.close();
 	}
-
+	/**
+     * Lee tareas desde un archivo de texto.
+     * @param archivo ruta del archivo
+     */
 	public static void leerTareas(String archivo) throws FileNotFoundException {
 			s = new Scanner(new File(archivo));
 			while(s.hasNextLine()) {
@@ -80,7 +98,9 @@ public class Sistema {
     public ArrayList<Tarea> getTareas() {
     	return tareas;
     	}
-
+    /**
+     * Aplica un Visitor sobre proyectos y tareas.
+     */
 	public static void aplicarVisitor() {
 		Visitor v = new ContadorVisitor();
 		for(Proyecto p: proyectos) {
@@ -91,7 +111,9 @@ public class Sistema {
 		}
 		((ContadorVisitor) v).mostrarResultados();
 	}
-
+	/**
+     * Actualiza el estado de una tarea.
+     */
 	public static void actualizarEstadoTarea(String u) {
 		System.out.println("Id de la tarea a actualizar: ");
 		String tareaId = s.nextLine();
@@ -108,7 +130,9 @@ public class Sistema {
 		}
 		System.out.println("Tarea no encontrada.");
 	}
-
+	/**
+     * Muestra las tareas asignadas a un usuario.
+     */
 	public static void verTareasAsignadas(String u) {
 		for(Proyecto p: getProyectos()) {
 			for(Tarea t : p.getTareas()) {
@@ -118,13 +142,19 @@ public class Sistema {
 			}
 		}
 	}
-
+	/**
+	 * Muestra en consola la lista de proyectos disponibles.
+	 * Incluye ID, nombre y responsable de cada proyecto.
+	 * Fuente de datos: colección interna de proyectos cargada desde archivos.
+	 */
 	public static void verProyectosDisponibles() {
 		for(Proyecto p : getProyectos()) {
 			System.out.println(p.getId() + "-" + p.getNombre());
 		}
 	}
-
+	/**
+     * Genera un reporte detallado de proyectos y tareas en reporte.txt.
+     */
 	public static void generarReporteProyectos() throws FileNotFoundException {
 	try {	PrintWriter pw = new PrintWriter("Reportes.txt");
 		for(Proyecto p: proyectos) {
@@ -145,7 +175,9 @@ public class Sistema {
 		}
 	}
 	
-
+	/**
+     * Asigna una estrategia de ordenamiento de tareas.
+     */
 	public static void asignarEstrategia() {
 		System.out.println("Elige la estrategia: 1) Complejidad  2)Fecha  3)Tipo");
 		int opcion = s.nextInt();
@@ -167,7 +199,9 @@ public class Sistema {
 		estrategia.ordenar(tareas);
 		System.out.println("Tareas ordenadas segun la estrategia elegida.");
 	}
-
+	/**
+     * Elimina una tarea del sistema.
+     */
 	public static void eliminarTarea() {
 		System.out.println("Id del proyecto: ");
 		String proyectoId = s.nextLine();
@@ -200,7 +234,9 @@ public class Sistema {
 			System.out.println("Tarea no encontrada");
 		}
 	}
-
+	/**
+     * Agrega una nueva tarea al sistema.
+     */
 	public static void agregarTarea() {
 		System.out.println("ID del proyecto: ");
 		String proyectoId = s.nextLine();
@@ -244,7 +280,11 @@ public class Sistema {
 		tareas.add(nueva);
 		System.out.println("Tarea agregada correctamente.");
 	}
-
+	/**
+	 * Muestra el listado de proyectos y permite eliminar uno seleccionado.
+	 * Operación interactiva: solicita el ID y ejecuta la eliminación.
+	 * Actualiza la colección interna de proyectos y tareas.
+	 */
 	public static void eliminarProyectos() {
 		System.out.println("ID del proyecto a eliminar: ");
 		String id = s.nextLine();
@@ -269,7 +309,15 @@ public class Sistema {
 			System.out.println("Proyecto no encontrado.");
 		}
 	}
-
+	/**
+	 * Muestra un menú interactivo para agregar un nuevo proyecto.
+	 * Solicita al usuario ingresar ID, nombre y responsable por consola.
+	 * Crea el proyecto y lo añade a la lista interna.
+	 *
+	 * Efectos secundarios:
+	 * - Modifica la lista global de proyectos.
+	 * - Puede imprimir mensajes en consola.
+	 */
 	public static void agregarProyectos() {
 		System.out.println("ID del proyecto: ");
 		String id = s.nextLine();
@@ -282,7 +330,13 @@ public class Sistema {
 		proyectos.add(nuevo);
 		System.out.println("Proyecto agregado correctamente. ");
 	}
-
+	/**
+	 * Muestra en consola todos los proyectos disponibles junto con sus tareas.
+	 * 
+	 * Para cada proyecto se imprime:
+	 * - ID, nombre y responsable.
+	 * - Lista de tareas asociadas con sus datos principales (ID, tipo, descripción, estado).
+	 */
 	public static void verProyectosTareas() {
 		for(Proyecto p: getProyectos()) {
 			System.out.println("Proyecto: " + p.getId() + "-" + p.getNombre() + " Responsable: " + p.getResponsable() + ")");

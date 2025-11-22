@@ -1,7 +1,10 @@
 package dominio;
 
 import java.time.LocalDate;
-
+/**
+ * Clase que representa una tarea de tipo Documentación.
+ * Mejora la calidad del proyecto.
+ */
 public class Documentacion extends Tarea{
 
 	public Documentacion(String proyectoId, String id, String tipo, String descripcion, String estado,
