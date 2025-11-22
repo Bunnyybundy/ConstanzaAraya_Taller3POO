@@ -13,8 +13,14 @@ import java.util.Scanner;
  */
 public class Main {
 	private static Scanner s;
+    /**
+     * Método principal de ejecución del programa.
+     * 
+     * @param args argumentos de línea de comandos (no utilizados)
+     * @throws FileNotFoundException si los archivos de datos no existen
+     */
 	public static void main(String[] args) throws FileNotFoundException {
-		
+		// Carga inicial de datos y login
 		Sistema sistema = Sistema.getInstance();
 		Sistema.leerUsuarios("usuarios.txt");
 		Sistema.leerProyectos("proyectos.txt");
@@ -47,7 +53,24 @@ public class Main {
 			menuUsuario(encontrado);
 		}
 	}
+
+	/**
+     * Menú para el rol Administrador.
+     * 
+     * Opciones disponibles:
+     * 1. Ver proyectos y tareas
+     * 2. Agregar proyecto
+     * 3. Eliminar proyecto
+     * 4. Agregar tarea
+     * 5. Eliminar tarea
+     * 6. Asignar estrategia de ordenamiento
+     * 7. Generar reporte de proyectos
+     * 8. Salir del menú
+     * 
+     * @throws FileNotFoundException si ocurre error al acceder a archivos
+     */
 	private static void menuAdmin() throws FileNotFoundException {
+		// Implementación del menú administrador
 		s = new Scanner(System.in);
 		int opcion;
 		do {
@@ -93,7 +116,20 @@ public class Main {
         }
 		}while(opcion!= 8);
 	}
+	/**
+     * Menú para el rol Usuario (Colaborador).
+     * 
+     * Opciones disponibles:
+     * 1. Ver proyectos disponibles
+     * 2. Ver tareas asignadas
+     * 3. Actualizar estado de tarea
+     * 4. Aplicar Visitor
+     * 5. Salir del menú
+     * 
+     * @param u usuario autenticado que accede al menú
+     */
 	private static void menuUsuario(Usuario u) {
+		// Implementación del menú usuario
 		s = new Scanner(System.in);
 		int opcion;
 		do {
