@@ -2,10 +2,7 @@ package dominio;
 //Nombre: Constanza Fernanda Araya Plaza
 //RUT: 21.609.057-8
 //Carrera: Ingeniería Civil en Computación e Informática
-import java.io.File;
 import java.io.FileNotFoundException;
-import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.Scanner;
 /**
  * Clase principal que inicia la ejecución del sistema.
