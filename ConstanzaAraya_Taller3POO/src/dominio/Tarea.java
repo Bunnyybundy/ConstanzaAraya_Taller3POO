@@ -68,7 +68,7 @@ public abstract class Tarea {
 		return fecha;
 	}
 	
-	
+	public abstract void aplicarAccion();
 	
 	
 }

@@ -10,4 +10,9 @@ public class Bug extends Tarea{
 		// TODO Auto-generated constructor stub
 	}
 
+	@Override
+	public void aplicarAccion() {
+		System.out.println("Bug → Afecta la criticidad del proyecto.");
+	}
+
 }
