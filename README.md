@@ -1,5 +1,8 @@
 # Taller 3 en Programacion Orientada a Objetos
 
+## 👩‍💻 Integrantes
+- Constanza Araya — RUT: 21.609.057-8 — Ingeniería Civil en Computacion Informática — GitHub: Bunnyybundy
+
 ## 📌 Descripción
 Este proyecto implementa un **sistema de gestión de proyectos y tareas** en Java, aplicando conceptos de **herencia, polimorfismo, interfaces** y varios **patrones de diseño**.  
 El sistema permite a **administradores** y **colaboradores** interactuar mediante un menú de opciones, gestionando proyectos y tareas con persistencia en archivos de texto.
